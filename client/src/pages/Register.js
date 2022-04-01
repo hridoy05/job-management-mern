@@ -16,7 +16,7 @@ const Register = (props) => {
 
   const [values, setValues] = useState(initialState);
   //use global context and state
-  const {showAlert, displayAlert} = useAppContext()
+  const {showAlert,isLoading, displayAlert, registerUser} = useAppContext()
 
   const toggleMember = ()=> {
     setValues({...values, isMember:! values.isMember})
@@ -28,11 +28,16 @@ const Register = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const {name, email, password, isMember} = values
-    console.log(values);
     if (!email || !password || (isMember && !name)) {
       displayAlert()
       return
     }
+    const currentUser = { name, email, password }
+if (isMember) {
+  console.log('already a member')
+} else {
+  registerUser(currentUser)
+}
   };
 
   return (
@@ -62,7 +67,7 @@ const Register = (props) => {
           handleChange={handleChange}
           value={values.password}
         />
-        <button type='submit' className='btn btn-block'>
+        <button type='submit' className='btn btn-block' disabled={isLoading}>
         submit
       </button>
       <p>{values.isMember ? 'Not a member yet?' : 'Already a member?'}
