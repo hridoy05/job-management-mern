@@ -1,21 +1,23 @@
 import { Outlet } from 'react-router-dom'
+import { Navbar, SmallSidebar, BigSidebar } from '../../components'
 import Wrapper from '../../assets/wrappers/SharedLayout'
-import { Navbar, BigSidebar, SmallSidebar } from '../../components'
+
 const SharedLayout = () => {
   return (
-    <Wrapper>
-      <main className='dashboard'>
-        <SmallSidebar />
-        <BigSidebar />
-        <div>
-          <Navbar />
-          <div className='dashboard-page'>
-            <Outlet />
+    <>
+      <Wrapper>
+        <main className='dashboard'>
+          <SmallSidebar />
+          <BigSidebar />
+          <div>
+            <Navbar />
+            <div className='dashboard-page'>
+              <Outlet />
+            </div>
           </div>
-        </div>
-      </main>
-    </Wrapper>
+        </main>
+      </Wrapper>
+    </>
   )
 }
-
-export default SharedLayout
+export default SharedLayout;
