@@ -23,10 +23,10 @@ const AddJob = () => {
     e.preventDefault()
     // while testing
   
-    // if (!position || !company || !jobLocation) {
-    //   displayAlert()
-    //   return
-    // }
+    if (!position || !company || !jobLocation) {
+      displayAlert()
+      return
+    }
     if (isEditing) {
       // eventually editJob()
       return

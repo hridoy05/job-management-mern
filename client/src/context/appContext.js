@@ -15,7 +15,9 @@ import {
   CLEAR_VALUES,
   CREATE_JOB_BEGIN,
   CREATE_JOB_SUCCESS,
-  CREATE_JOB_ERROR
+  CREATE_JOB_ERROR,
+  GET_JOBS_SUCCESS,
+  GET_JOBS_BEGIN
 } from "./actions";
 import reducer from "./reducer";
 
@@ -43,6 +45,10 @@ export const initialState = {
   jobType: 'full-time',
   statusOptions: ['pending', 'interview', 'declined'],
   status: 'pending', 
+  jobs: [],
+  totalJobs: 0,
+  numOfPages: 1,
+  page: 1,
 };
 
 
@@ -178,8 +184,38 @@ const AppProvider = ({ children }) => {
     }
     clearAlert()
   }
+  const getJobs = async () => {
+    let url = `/jobs`
+  
+    dispatch({ type: GET_JOBS_BEGIN })
+    try {
+      const { data } = await authFetch(url)
+      const { jobs, totalJobs, numOfPages } = data
+      dispatch({
+        type: GET_JOBS_SUCCESS,
+        payload: {
+          jobs,
+          totalJobs,
+          numOfPages,
+        },
+      })
+    } catch (error) {
+      console.log(error.response)
+      logoutUser()
+    }
+    clearAlert()
+  }
+
+  const setEditJob = (id) => {
+    console.log(`set edit job : ${id}`)
+  }
+  const deleteJob = (id) =>{
+    console.log(`delete : ${id}`)
+  }
+  
+  
   return (
-    <AppContext.Provider value={{ ...state, displayAlert, setUpUser, toggleSidebar, logoutUser , updateUser,handleChange, clearValues, createJob}}>
+    <AppContext.Provider value={{ ...state, displayAlert, setUpUser, toggleSidebar, logoutUser , updateUser,handleChange, clearValues, createJob, getJobs, setEditJob, deleteJob}}>
       {children}
     </AppContext.Provider>
   );
