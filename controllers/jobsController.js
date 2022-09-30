@@ -63,7 +63,6 @@ const getAllJobs = async (req, res) => {
   result = result.skip(skip).limit(limit);
 
   const jobs = await result;
-  console.log(jobs);
   const totalJobs = await Job.countDocuments(queryObject);
   const numOfPages = Math.ceil(totalJobs / limit);
 
@@ -119,13 +118,14 @@ const showStats = async (req, res) => {
     acc[title] = count
     return acc
   },{})
+  console.log(stats);
   const defaultState = {
     pending: stats.pending || 0,
     interview: stats.pending || 0,
     declined: stats.pending || 0
   }
   let monthlyApplications = []
-  res.stats(StatusCodes.OK).json({ defaultState, monthlyApplications });
+  res.status(StatusCodes.OK).json({ defaultState, monthlyApplications });
 };
 
 export { createJob, deleteJob, getAllJobs, updateJob, showStats };

@@ -9,9 +9,10 @@ import {
   showStats
 } from '../controllers/jobsController.js'
 
-router.route('/').post(createJob).get(getAllJobs).get(showStats)
+router.route('/').post(createJob).get(getAllJobs)
 // remember about :id
 
 router.route('/:id').delete(deleteJob).patch(updateJob)
+router.get('/stats', showStats)
 
 export default router
