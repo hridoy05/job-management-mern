@@ -177,6 +177,7 @@ const reducer = (state, action) => {
     return { ...state, isLoading: true, showAlert: false }
   }
   if (action.type === SHOW_STATS_SUCCESS) {
+    console.log("hit reducer", state, "reducer");
     return {
       ...state,
       isLoading: false,

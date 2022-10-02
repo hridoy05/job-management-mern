@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { useEffect } from 'react'
 import { useAppContext } from '../../context/appContext'
@@ -8,7 +7,9 @@ const Stats = () => {
   const {showStats, isLoading, monthlyApplications} = useAppContext()
 
   useEffect(()=> {
+    
     showStats()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   if (isLoading) {

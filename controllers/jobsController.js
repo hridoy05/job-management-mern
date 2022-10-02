@@ -108,6 +108,7 @@ const deleteJob = async (req, res) => {
 };
 
 const showStats = async (req, res) => {
+  console.log("hit show stats");
   let stats = await Job.aggregate([
     { $match: { createdBy: mongoose.Types.ObjectId(req.user.userId) } },
     { $group: { _id: "$status", count: { $sum: 1 } } },
