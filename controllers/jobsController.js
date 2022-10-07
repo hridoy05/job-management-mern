@@ -119,10 +119,10 @@ const showStats = async (req, res) => {
     acc[title] = count
     return acc
   },{})
-  const defaultState = {
+  const defaultStats = {
     pending: stats.pending || 0,
-    interview: stats.pending || 0,
-    declined: stats.pending || 0
+    interview: stats.interview || 0,
+    declined: stats.declined || 0
   }
   let monthlyApplications = await Job.aggregate([
     {$match: { createdBy: mongoose.Types.ObjectId(req.user.userId)}},
@@ -163,7 +163,7 @@ const showStats = async (req, res) => {
     return { date, count }
   })
   .reverse()
-  res.status(StatusCodes.OK).json({ defaultState, monthlyApplications });
+  res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };
 
 export { createJob, deleteJob, getAllJobs, updateJob, showStats };

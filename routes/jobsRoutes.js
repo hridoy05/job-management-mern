@@ -11,8 +11,8 @@ import {
 
 router.route('/').post(createJob).get(getAllJobs)
 // remember about :id
-
+router.route('/stats').get(showStats)
 router.route('/:id').delete(deleteJob).patch(updateJob)
-router.get('/stats', showStats)
+
 
 export default router
