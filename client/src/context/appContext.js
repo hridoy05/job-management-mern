@@ -224,7 +224,7 @@ const AppProvider = ({ children }) => {
         },
       })
     } catch (error) {
-      // logoutUser()
+      logoutUser()
     }
     clearAlert()
   }
@@ -270,7 +270,6 @@ const AppProvider = ({ children }) => {
     dispatch({ type: SHOW_STATS_BEGIN })
     try {
       const { data } = await authFetch('/jobs/stats')
-      console.log(data, "app context");
       dispatch({
         type: SHOW_STATS_SUCCESS,
         payload: {
