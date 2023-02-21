@@ -14,7 +14,6 @@ const Stats = () => {
   if (isLoading) {
     return <Loading center />
   }
-  console.log(monthlyApplications);
 
   return (
     <>
