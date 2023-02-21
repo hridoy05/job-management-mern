@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-
-const connectDB = (url) => {
-  return mongoose.connect(url)
+import {DB_URL} from '../config/config.js'
+const connectDB = () => {
+  return mongoose.connect(DB_URL)
 }
 export default connectDB
