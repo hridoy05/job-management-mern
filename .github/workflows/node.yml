@@ -1,7 +1,7 @@
 name: Job Portal API
 on:
   push:
-    branches: [ master ]
+    branches: [ refactor-layered-version ]
 jobs:
   build:
     runs-on: ubuntu-latest
