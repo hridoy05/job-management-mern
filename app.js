@@ -23,6 +23,8 @@ import notFoundMiddleware from './middleware/not-found.js'
 import errorHandlerMiddleware from './middleware/error-handler.js'
 import authenticateUser from './middleware/auth.js'
 import path from 'path'
+import { handleRequest } from './middleware/handle-request.js'
+import { errorLogger } from './logger/logger.js'
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -34,7 +36,7 @@ app.use(express.json())
 app.use(helmet())
 app.use(xss())
 app.use(mongoSanitize())
-
+app.use(handleRequest)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 
@@ -42,6 +44,7 @@ app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './client/build', 'index.html'))
 })
+app.use(errorLogger);
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)
