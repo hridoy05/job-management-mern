@@ -37,7 +37,7 @@ app.use(helmet())
 app.use(xss())
 app.use(mongoSanitize())
 app.use(handleRequest)
-app.use(infoLogger);
+app.use(infoLogger());
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 
@@ -45,7 +45,7 @@ app.use('/api/v1/jobs', authenticateUser, jobsRouter)
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './client/build', 'index.html'))
 })
-app.use(errorLogger);
+app.use(errorLogger());
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)

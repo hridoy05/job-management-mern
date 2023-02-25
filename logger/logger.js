@@ -40,7 +40,6 @@ export const infoLogger = () => expressWinston.logger({
 export const errorLogger = (uri) => expressWinston.errorLogger({
     transports: [
         new winston.transports.Console(),
-        mongoErrorTransport(uri),
         fileErrorTransport
     ],
     format: winston.format.combine(winston.format.colorize(), winston.format.json()),
