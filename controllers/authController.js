@@ -21,7 +21,7 @@ const HttpRegister = async (req, res) => {
     process.env.JWT_LIFETIME,
     process.env.JWT_SECRET
   );
-  console.log(user, token);
+
   res.status(StatusCodes.CREATED).json({
     user: {
       email: user.email,

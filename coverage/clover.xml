@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683559344240" clover="3.2.0">
-  <project timestamp="1683559344240" name="All files">
-    <metrics statements="66" coveredstatements="38" conditionals="23" coveredconditionals="9" methods="9" coveredmethods="3" elements="98" coveredelements="50" complexity="0" loc="66" ncloc="66" packages="4" files="4" classes="4"/>
+<coverage generated="1683562082973" clover="3.2.0">
+  <project timestamp="1683562082974" name="All files">
+    <metrics statements="47" coveredstatements="29" conditionals="21" coveredconditionals="9" methods="4" coveredmethods="2" elements="72" coveredelements="40" complexity="0" loc="47" ncloc="47" packages="2" files="2" classes="2"/>
     <package name="mern-jobify">
       <metrics statements="13" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="app.js" path="C:\Users\LS\Desktop\mern\mern-jobify\app.js">
@@ -22,16 +22,15 @@
       </file>
     </package>
     <package name="mern-jobify.controllers">
-      <metrics statements="35" coveredstatements="18" conditionals="21" coveredconditionals="9" methods="3" coveredmethods="2"/>
+      <metrics statements="34" coveredstatements="17" conditionals="21" coveredconditionals="9" methods="3" coveredmethods="2"/>
       <file name="authController.js" path="C:\Users\LS\Desktop\mern\mern-jobify\controllers\authController.js">
-        <metrics statements="35" coveredstatements="18" conditionals="21" coveredconditionals="9" methods="3" coveredmethods="2"/>
+        <metrics statements="34" coveredstatements="17" conditionals="21" coveredconditionals="9" methods="3" coveredmethods="2"/>
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="1" type="cond" truecount="4" falsecount="1"/>
         <line num="14" count="0" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
@@ -60,36 +59,6 @@
         <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
         <line num="83" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="mern-jobify.models">
-      <metrics statements="8" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-      <file name="User.js" path="C:\Users\LS\Desktop\mern\mern-jobify\models\User.js">
-        <metrics statements="8" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="54" count="1" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-      </file>
-    </package>
-    <package name="mern-jobify.utils">
-      <metrics statements="10" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
-      <file name="authUtils.js" path="C:\Users\LS\Desktop\mern\mern-jobify\utils\authUtils.js">
-        <metrics statements="10" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="2" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
       </file>
     </package>
   </project>

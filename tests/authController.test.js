@@ -1,9 +1,10 @@
 import request from "supertest";
 import { StatusCodes } from "http-status-codes";
 import app from "../app.js";
-import * as authUtils from "../utils/authUtils.js";
+import { comparePassword, createJWT } from "../utils/authUtils.js";
 
 jest.mock("../repository/auth.repository.js");
+jest.mock("../utils/authUtils.js");
 
 describe("USER AUTH endpoints", () => {
   describe("POST /api/v1/auth/register", () => {
@@ -20,6 +21,7 @@ describe("USER AUTH endpoints", () => {
         .post("/api/v1/auth/register")
         .send(userData);
       // assert
+      expect(createJWT).toHaveBeenCalled();
       expect(res.status).toBe(StatusCodes.CREATED);
       expect(res.body.user.email).toBe("john.doe@example.com");
       expect(res.body.token).toBeDefined();
@@ -31,7 +33,7 @@ describe("USER AUTH endpoints", () => {
       // arrange
       const email = "john.doe@example.com";
       const password = "password";
-      jest.spyOn(authUtils, "comparePassword").mockResolvedValue(true);
+      //jest.spyOn(authUtils, "comparePassword").mockResolvedValue(true);
       // act
       const res = await request(app).post("/api/v1/auth/login").send({
         email,
@@ -39,7 +41,7 @@ describe("USER AUTH endpoints", () => {
       });
 
       // assert
-      expect(authUtils.comparePassword).toHaveBeenCalled();
+      expect(comparePassword).toHaveBeenCalled();
 
       expect(res.status).toBe(StatusCodes.OK);
       expect(res.body.user.email).toBe(email);
