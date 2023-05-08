@@ -2,15 +2,20 @@
 
 import User from "../../models/User.js";
 
-let users = [];
+const mockUser = {
+  name: "John Doe",
+  email: "john.doe@example.com",
+  password: "password",
+};
 
 export const createUser = async (userData) => {
   const user = new User({ ...userData });
-  users.push(user._doc);
   return user._doc;
 };
 
 export const findUserUsingEmail = async (email) => {
-  console.log("called mock checked email");
-  return users.find((user) => user.email === email) || null;
+  if (email === mockUser.email) {
+    return mockUser;
+  }
+  return null;
 };

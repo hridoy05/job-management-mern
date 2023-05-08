@@ -5,6 +5,7 @@ import {
   createUser,
   findUserUsingEmail,
 } from "../repository/auth.repository.js";
+import { comparePassword, createJWT } from "../utils/authUtils.js";
 
 //user sign in
 const HttpRegister = async (req, res) => {
@@ -15,7 +16,11 @@ const HttpRegister = async (req, res) => {
 
   const user = await createUser(req.body);
 
-  const token = user.createJWT();
+  const token = await createJWT(
+    user._id,
+    process.env.JWT_LIFETIME,
+    process.env.JWT_SECRET
+  );
   console.log(user, token);
   res.status(StatusCodes.CREATED).json({
     user: {
@@ -40,11 +45,15 @@ const HttpLogin = async (req, res) => {
     throw new UnAuthenticatedError("Invalid Credentials");
   }
 
-  const isPasswordCorrect = await user.comparePassword(password);
+  const isPasswordCorrect = await comparePassword(password, user.password);
   if (!isPasswordCorrect) {
     throw new UnAuthenticatedError("Invalid Credentials");
   }
-  const token = user.createJWT();
+  const token = createJWT(
+    user._id,
+    process.env.JWT_LIFETIME,
+    process.env.JWT_SECRET
+  );
   user.password = undefined;
   res.status(StatusCodes.OK).json({ user, token, location: user.location });
 };
@@ -66,7 +75,11 @@ const HttpUpdateUser = async (req, res) => {
   user.location = location;
 
   await user.save();
-  const token = user.createJWT();
+  const token = createJWT(
+    user._id,
+    process.env.JWT_LIFETIME,
+    process.env.JWT_SECRET
+  );
   res.status(StatusCodes.OK).json({ user, token, location: user.location });
 };
 
