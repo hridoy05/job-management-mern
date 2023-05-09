@@ -33,7 +33,6 @@ describe("USER AUTH endpoints", () => {
       // arrange
       const email = "john.doe@example.com";
       const password = "password";
-      //jest.spyOn(authUtils, "comparePassword").mockResolvedValue(true);
       // act
       const res = await request(app).post("/api/v1/auth/login").send({
         email,
@@ -49,18 +48,3 @@ describe("USER AUTH endpoints", () => {
     });
   });
 });
-
-import jwt from "jsonwebtoken";
-
-// // jest.mock("jsonwebtoken", () => ({
-// //   sign: jest.fn().mockReturnValue("mockedToken"),
-// // }));
-
-// jest.spyOn(jwt, "sign").mockReturnValue("mockedToken"),
-//   // Then in your test, you can use jwt.sign as usual, and it will return "mockedToken":
-//   test("jwt", () => {
-//     const token = jwt.sign("hridoy", process.env.JWT_SECRET, {
-//       expiresIn: process.env.JWT_LIFETIME,
-//     });
-//     expect(token).toBe("mockedToken");
-//   });

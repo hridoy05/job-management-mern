@@ -1,22 +1,20 @@
-import http from 'http';
-import connectDB from './db/connect.js'
-import app from './app.js'
+import http from "http";
+import app from "./app.js";
+import { mongoConnect } from "./db/connect.js";
 
+const server = http.createServer(app);
 
-const server = http.createServer(app)
-
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 
 const startServer = async () => {
   try {
-    await connectDB()
+    await mongoConnect();
     server.listen(port, () => {
-      console.log(`Server is listening on port ${port}...`)
-    })
+      console.log(`Server is listening on port ${port}...`);
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-startServer()
-
+startServer();

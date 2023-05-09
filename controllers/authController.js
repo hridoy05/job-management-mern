@@ -4,6 +4,7 @@ import { BadRequestError, UnAuthenticatedError } from "../errors/index.js";
 import {
   createUser,
   findUserUsingEmail,
+  updateUser,
 } from "../repository/auth.repository.js";
 import { comparePassword, createJWT } from "../utils/authUtils.js";
 
@@ -65,22 +66,20 @@ const HttpUpdateUser = async (req, res) => {
     throw new BadRequestError("Please provide all values");
   }
 
-  const user = await User.findOne({ _id: req.user.userId });
-  if (!user) {
-    throw new BadRequestError("no user found");
-  }
-  user.email = email;
-  user.name = name;
-  user.lastName = lastName;
-  user.location = location;
+  const userId = req.user.userId;
+  try {
+    const user = await updateUser(userId, email, name, lastName, location);
 
-  await user.save();
-  const token = createJWT(
-    user._id,
-    process.env.JWT_LIFETIME,
-    process.env.JWT_SECRET
-  );
-  res.status(StatusCodes.OK).json({ user, token, location: user.location });
+    const token = createJWT(
+      user._id,
+      process.env.JWT_LIFETIME,
+      process.env.JWT_SECRET
+    );
+
+    res.status(StatusCodes.OK).json({ user, token, location: user.location });
+  } catch (error) {
+    throw new BadRequestError(error.message);
+  }
 };
 
 export { HttpRegister, HttpLogin, HttpUpdateUser };
